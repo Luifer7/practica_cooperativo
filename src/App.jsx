@@ -34,7 +34,7 @@ function App() {
 
         <Formulario agregarTarea={agregarTarea} ></Formulario>
 
-        <div className='p-3 border bg-dark text-white' >
+        <div className='p-3 mt-2 mx-4' >
 
         <Tareas tareas={tareas} ff={ff}></Tareas>
 

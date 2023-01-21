@@ -30,7 +30,7 @@ const Formulario = ({agregarTarea}) => {
 
 
     return (
-        <div className='p-5 text-center bg-dark' >
+        <div className='p-2 mx-3 px-4 text-center rounded' >
             <form  onSubmit={handledSubmit}
             className='d-flex gap-1' >
 
@@ -46,7 +46,7 @@ const Formulario = ({agregarTarea}) => {
                  onChange={handledChange}
                  />                 
 
-                <button type='submit' className='btn btn-success'>Agregar</button>
+                <button type='submit' className='btn btn-primary text-white fw-bold btn-sm'>Agregar</button>
             
             </form>        
 

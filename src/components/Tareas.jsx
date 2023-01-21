@@ -11,11 +11,11 @@ const Tareas = ({tareas, ff}) => {
     <div>
         {
             tareas.map((t, i) => (
-                <div className="border p-3 rounded my-2 
+                <div className="p-3 rounded my-2 bg-dark
                 d-flex align-items-center justify-content-between"
                 key={i} >
 
-               <strong className="text-capitalize" > {t.nombre}</strong>
+               <strong className="text-capitalize text-white"> {t.nombre}</strong>
                <strong className="text-info" >{t.descripcion}</strong>
 
                <DeleteTarea tarea={t} del={del} ></DeleteTarea>

@@ -3,5 +3,7 @@ body {
   border: 1px solid rgb(0, 0, 0);
   margin: 0; padding: 0;
   height: 100vh;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(211,228,231,1) 92%, rgba(0,0,0,0.5214460784313726) 100%, rgba(255,255,255,1) 100%);
 }
 
