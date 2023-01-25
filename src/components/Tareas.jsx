@@ -64,12 +64,14 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea}) => {
    
     const changeBg = (estado) => {
         if (estado) {
-            return 'bg-success'
+            return 'bg-dark text-white text-decoration-line-through fw-bold'
         }
         if (!estado) {
             return 'bg-primary'
         }
     }
+
+ 
    
     return ( 
     <div >
@@ -81,13 +83,22 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea}) => {
                      justify-content-between gap-1 ${changeBg(tarea.estado)}`
                 }
                 key={i} >
-                    
-                <div style={{width: "70%"}} 
-                className="d-flex  d-flex align-items-center justify-content-center flex-wrap" >
+
+                {/** Checkbox completar tarea */}
+                <div className="form-check form-switch">
+                <input checked={tarea.estado} className="form-check-input"  
+                type="checkbox" role="switch" id="flexSwitchCheckChecked" 
+                onChange={e => completarTarea(e, tarea)}
+                />
+                </div>
+
+                { /** Caja contenido */ }                  
+                <div style={{width: "75%"}} 
+                className="d-flex align-items-center justify-content-center flex-wrap" >
 
                 <small style={{wordBreak: "break-all"}}  
-                className="text-white  w-50 text-start py-1">
-                   <i className="fw-bold">{tarea.descripcion}</i>
+                className="text-capitalize text-white w-50 text-start fw-bold">
+                   {tarea.descripcion}
                 </small>
                 
                 <small className="text-capitalize text-white w-50 fw-bold text-center">
@@ -96,13 +107,10 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea}) => {
                 
                 </div>
 
-                <div style={{width: "25%"}} 
-                className="d-flex align-items-center justify-content-center gap-2 flex-wrap" >
+                { /** caja Acciones */ }
+                <div style={{width: "20%"}} 
+                className="d-flex align-items-center justify-content-end gap-2 flex-wrap" >
                 
-                <i className="bi bi-check-square-fill h2 m-0 text-white" style={{cursor: 'pointer'}}
-                onClick={() => completarTarea(tarea)}
-                ></i>
-
                 <i className="btn bi bi-pencil-fill btn-warning btn-sm fw-bold text-dark"
                 onClick={() => showEditarTarea(tarea)}
                 ></i>
