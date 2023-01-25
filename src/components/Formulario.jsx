@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react'
-
+import Swal from 'sweetalert2'
 
 const Formulario = ({agregarTarea}) => {
 
@@ -16,18 +16,24 @@ const Formulario = ({agregarTarea}) => {
         e.preventDefault()
 
         if (fecha === '' || descripcion === '' ) {
-            return
+           return Swal.fire({
+                icon: 'info', title: 'no puedes enviar campos vacios!'
+            })
         }
         task.id = Date.now()
         task.estado = false
 
         agregarTarea(task)
+        document.getElementById('uno').value = ''
+        document.getElementById('dos').value = ''
+
     }
 
     const handledChange = e => {
         setTask({ 
             ...task, [e.target.name] : e.target.value
         })
+ 
     }
 
 
@@ -41,7 +47,7 @@ const Formulario = ({agregarTarea}) => {
               
                 <div className="my-1 text-start text-white text-form col-12 col-sm-6" >
                 <label className="form-label">Describe tu tarea</label>
-                <input type="text" placeholder='Escribe aqui' maxLength={80}
+                <input type="text" placeholder='Escribe aqui' maxLength={80} id="uno"
                  className='form-control' 
                  name='descripcion'
                  onChange={handledChange}
@@ -50,7 +56,7 @@ const Formulario = ({agregarTarea}) => {
 
                 <div className="my-1 text-start text-white text-form col-12 col-sm-6">
                 <label className="form-label">Fecha limite</label>
-                <input type="date" maxLength={10}
+                <input type="date" maxLength={10} id="dos"
                 placeholder='Escribe aqui'
                 className="form-control"
                 name='fecha' onChange={handledChange}
