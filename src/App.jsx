@@ -11,11 +11,7 @@ function App() {
   const [ tareas, setTareas] = useState([])
 
   const agregarTarea = (tarea) => {
-
-    setTareas([
-      ...tareas, tarea
-    ])
-
+    setTareas([...tareas, tarea])
   }
 
   const borrarTarea = (tarea) => {
@@ -23,8 +19,16 @@ function App() {
   }
 
   const editarTarea = (tarea) => {
-      let nuevasTareas = tareas.map(el => el.id == tarea.id ? tarea : el)
-      setTareas(nuevasTareas)
+    let nuevasTareas = tareas.map(elemento => elemento.id == tarea.id ? tarea : elemento)
+    setTareas(nuevasTareas)
+  }
+
+  const completarTarea = (tarea) => {
+    let tareaCompletada = {
+      id: tarea.id, fecha: tarea.fecha, descripcion: tarea.descripcion, estado: !tarea.estado
+    }
+    let nuevasTareas = tareas.map(elemento => elemento.id == tareaCompletada.id ? tareaCompletada : elemento)
+    setTareas(nuevasTareas)
   }
 
   return (
@@ -33,11 +37,17 @@ function App() {
 
       <div className='w-100 mt-3 p-2' >
 
-        <Formulario agregarTarea={agregarTarea} ></Formulario>
+        <Formulario agregarTarea={agregarTarea}
+        />
 
-        <div className='p-3 mt-2 mx-4' >
+        <div className='p-3 mt-2 mx-3' >
 
-        <Tareas tareas={tareas} borrarTarea={borrarTarea} editarTarea={editarTarea} ></Tareas>
+        <Tareas 
+        tareas={tareas} 
+        borrarTarea={borrarTarea} 
+        editarTarea={editarTarea}
+        completarTarea={completarTarea}
+        />
 
         </div>
 
