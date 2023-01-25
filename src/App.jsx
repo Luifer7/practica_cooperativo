@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import React, { Fragment } from 'react'
-import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Tareas from './components/Tareas';
-
 
 
 function App() {
@@ -20,15 +18,18 @@ function App() {
 
   }
 
-  const ff = (t) => {
-    setTareas(tareas.filter(field => field.id != t.id))
+  const borrarTarea = (tarea) => {
+    setTareas(tareas.filter(field => field.id != tarea.id))
+  }
+
+  const editarTarea = (tarea) => {
+      let nuevasTareas = tareas.map(el => el.id == tarea.id ? tarea : el)
+      setTareas(nuevasTareas)
   }
 
   return (
 
     <Fragment>   
-
-      <Header></Header>
 
       <div className='w-100 mt-3 p-2' >
 
@@ -36,7 +37,7 @@ function App() {
 
         <div className='p-3 mt-2 mx-4' >
 
-        <Tareas tareas={tareas} ff={ff}></Tareas>
+        <Tareas tareas={tareas} borrarTarea={borrarTarea} editarTarea={editarTarea} ></Tareas>
 
         </div>
 
