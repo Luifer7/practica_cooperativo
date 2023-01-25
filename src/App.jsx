@@ -47,6 +47,7 @@ function App() {
         borrarTarea={borrarTarea} 
         editarTarea={editarTarea}
         completarTarea={completarTarea}
+        setTareas={setTareas}
         />
 
         </div>

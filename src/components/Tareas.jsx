@@ -1,9 +1,10 @@
 
 
+import React from "react";
 import Swal from "sweetalert2";
 
 
-const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea}) => {
+const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) => {
     
     const showEditarTarea = async (tarea) => {
         console.log(tarea)
@@ -71,13 +72,31 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea}) => {
         }
     }
 
- 
+    const dragItem = React.useRef(null)
+    const dragOver = React.useRef(null)
+
+    const handledSort = () => {
+      let _tareas = [...tareas]
+      const dragItemContent = _tareas.splice(dragItem.current, 1)[0]
+      _tareas.splice(dragOver.current, 0, dragItemContent)
+
+      dragItem.current = null
+      dragOver.current = null
+
+      setTareas(_tareas)
+    }
    
     return ( 
-    <div >
+    <div  >
         {
             tareas.map((tarea, i) => (
                 <div 
+                draggable 
+                onDragStart={(e)=> dragItem.current = i }
+                onDragEnter={(e)=> dragOver.current = i }
+                onDragEnd={handledSort}
+                onDragOver={(e) => e.preventDefault()}
+                style={{cursor: 'move'}}
                 className={
                     `p-2 mx-1 rounded my-1 d-flex align-items-center 
                      justify-content-between gap-1 ${changeBg(tarea.estado)}`
