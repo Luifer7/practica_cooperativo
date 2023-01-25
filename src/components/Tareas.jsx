@@ -62,7 +62,8 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
           }
 
     }
-   
+    
+    //Cambiar bacj¿kgraun de cada tarea
     const changeBg = (estado) => {
         if (estado) {
             return 'bg-dark text-white text-decoration-line-through fw-bold'
@@ -72,26 +73,39 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
         }
     }
 
+    /** drag and drop logica */
+
+    //declaramos propiedades reactivas
+    //para asignarle acada una el evento drag start y drag over respectivamente, nativos de react y js
     const dragItem = React.useRef(null)
     const dragOver = React.useRef(null)
 
+    //Funicion para ordenar el arreglo
     const handledSort = () => {
+
+      //Hacemos una copia de tareas
       let _tareas = [...tareas]
+
+      //Logica de reemplazo
       const dragItemContent = _tareas.splice(dragItem.current, 1)[0]
       _tareas.splice(dragOver.current, 0, dragItemContent)
 
+      //Seteamos de nuevo las propiedades reactivas
       dragItem.current = null
       dragOver.current = null
 
+      // actualziamos el arreglo de tareas
       setTareas(_tareas)
     }
+
+     /** drag and drop logica */
    
     return ( 
     <div  >
         {
             tareas.map((tarea, i) => (
                 <div 
-                draggable 
+                draggable
                 onDragStart={(e)=> dragItem.current = i }
                 onDragEnter={(e)=> dragOver.current = i }
                 onDragEnd={handledSort}

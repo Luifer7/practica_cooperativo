@@ -25,8 +25,9 @@ function App() {
 
   const completarTarea = (e, tarea) => {
     let tareaCompletada = {
-      id: tarea.id, fecha: tarea.fecha, descripcion: tarea.descripcion, estado: e.target.checked
-    }
+        id: tarea.id, fecha: tarea.fecha, 
+        descripcion: tarea.descripcion, estado: e.target.checked}
+
     let nuevasTareas = tareas.map(elemento => elemento.id == tareaCompletada.id ? tareaCompletada : elemento)
     setTareas(nuevasTareas)
   }
