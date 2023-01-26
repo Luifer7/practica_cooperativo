@@ -24,9 +24,10 @@ const Formulario = ({agregarTarea}) => {
         task.estado = false
 
         agregarTarea(task)
-        document.getElementById('uno').value = ''
-        document.getElementById('dos').value = ''
-
+        setTask({
+            fecha: '', descripcion: ''
+        })
+        
     }
 
     const handledChange = e => {
@@ -50,6 +51,7 @@ const Formulario = ({agregarTarea}) => {
                 <input type="text" placeholder='Escribe aqui' maxLength={80} id="uno"
                  className='form-control' 
                  name='descripcion'
+                 value={descripcion}
                  onChange={handledChange}
                  />                 
                 </div>
@@ -60,6 +62,7 @@ const Formulario = ({agregarTarea}) => {
                 placeholder='Escribe aqui'
                 className="form-control"
                 name='fecha' onChange={handledChange}
+                value={fecha}
                 />
                 </div>
 

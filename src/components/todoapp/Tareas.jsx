@@ -1,13 +1,13 @@
 
 
-import React from "react";
+import React, { useRef } from "react";
 import Swal from "sweetalert2";
 
 
 const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) => {
     
     const showEditarTarea = async (tarea) => {
-        console.log(tarea)
+        
         const { value: formValues } = await Swal.fire({
             title: 'Editar Tarea', showCancelButton: true, confirmButtonText: 'continuar',
             confirmButtonColor: '#198754', cancelButtonColor: '#b82020',
@@ -26,7 +26,13 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
           })
           
           if (formValues) {
-            let tareaEditada = {id: formValues[2], fecha: formValues[0], descripcion: formValues[1], estado: tarea.estado }
+           
+            let tareaEditada = {
+                fecha: formValues[0], 
+                descripcion: formValues[1],
+                estado: tarea.estado, 
+                id: formValues[2], }
+
             Swal.fire({
                 title: 'Tarea editada', showCancelButton: true, 
                 allowOutsideClick: false, confirmButtonText: 'confirmar cambio', 
@@ -77,31 +83,32 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
 
     //declaramos propiedades reactivas
     //para asignarle acada una el evento drag start y drag over respectivamente, nativos de react y js
-    const dragItem = React.useRef(null)
-    const dragOver = React.useRef(null)
+    const dragItem = useRef(null)
+    const dragOver = useRef(null)
+ 
 
     //Funicion para ordenar el arreglo
     const handledSort = () => {
 
       //Hacemos una copia de tareas
-      let _tareas = [...tareas]
+    let _tareas = [...tareas]
 
       //Logica de reemplazo
-      const dragItemContent = _tareas.splice(dragItem.current, 1)[0]
+    const dragItemContent = _tareas.splice(dragItem.current, 1)[0]
       _tareas.splice(dragOver.current, 0, dragItemContent)
+
+      // actualziamos el arreglo de tareas
+      setTareas(_tareas)
 
       //Seteamos de nuevo las propiedades reactivas
       dragItem.current = null
       dragOver.current = null
-
-      // actualziamos el arreglo de tareas
-      setTareas(_tareas)
     }
 
      /** drag and drop logica */
    
     return ( 
-    <div  >
+    <div>
         {
             tareas.map((tarea, i) => (
                 <div 
@@ -112,7 +119,7 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
                 onDragOver={(e) => e.preventDefault()}
                 style={{cursor: 'move'}}
                 className={
-                    `p-2 mx-1 rounded my-1 d-flex align-items-center 
+                    `p-2 mx-1 rounded my-1 d-flex align-items-center border 
                      justify-content-between gap-1 ${changeBg(tarea.estado)}`
                 }
                 key={i} >
@@ -124,7 +131,7 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
                 onChange={e => completarTarea(e, tarea)}
                 />
                 </div>
-
+                  
                 { /** Caja contenido */ }                  
                 <div style={{width: "75%"}} 
                 className="d-flex align-items-center justify-content-center flex-wrap" >
