@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Fragment } from "react";
 import Formulario from './Formulario';
 import Tareas from './Tareas';
-
+import Back from '../Back';
 
 function TodoApp () {
 
@@ -34,7 +34,11 @@ const completarTarea = (e, tarea) => {
 return (
 
     <Fragment>
-
+      
+        <div className='w-100 d-flex align-items-center justify-content-start h5 m-0 px-2' >
+        <Back/>
+        </div>
+        
         <h1 className='text-center text-white mt-3' >TODO APP</h1>
 
         <div className='w-100 mt-3 p-2'>

@@ -6,3 +6,15 @@ body {
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(211,228,231,1) 92%, rgba(0,0,0,0.5214460784313726) 100%, rgba(255,255,255,1) 100%);
 }
 
+.silueta {
+  transition: .6s ease all;
+  -webkit-filter: grayscale(100%) brightness(0); /* Safari 6.0 - 9.0 */
+  filter: grayscale(60%) brightness(0);
+  opacity: 1;
+}
+
+.textos {
+  transition: -8s ease all;
+  text-shadow: 2px 2px #000000;
+}
+

@@ -119,7 +119,7 @@ const Tareas = ({tareas, borrarTarea, editarTarea, completarTarea, setTareas}) =
                 onDragOver={(e) => e.preventDefault()}
                 style={{cursor: 'move'}}
                 className={
-                    `p-2 mx-1 rounded my-1 d-flex align-items-center border 
+                    `p-2 mx-1 rounded my-1 d-flex align-items-center 
                      justify-content-between gap-1 ${changeBg(tarea.estado)}`
                 }
                 key={i} >
